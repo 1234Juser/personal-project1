@@ -1,12 +1,12 @@
 package com.example.TestProject.config;
 
+import com.example.TestProject.security.handler.Custom403Handler;
+import com.example.TestProject.security.handler.CustomSocialLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -17,9 +17,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import com.example.TestProject.security.CustomUserDetailsService;
-import com.example.TestProject.security.handler.Custom403Handler;
-import com.example.TestProject.security.handler.CustomSocialLoginSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -35,10 +32,6 @@ public class CustomSecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        return new CustomUserDetailsService(passwordEncoder());
-//    }
 
 
     @Bean
@@ -51,15 +44,8 @@ public class CustomSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
 
         log.info("----------------Security Config----------------------");
-
-        //deprecated
-        // http.formLogin();
-        // http.formLogin(Customizer.withDefaults());
         http.formLogin(form -> {
-
             form.loginPage("/member/login");
-
-
         });
 
         http.csrf(httpSecurityCsrfConfigurer ->  httpSecurityCsrfConfigurer.disable() );

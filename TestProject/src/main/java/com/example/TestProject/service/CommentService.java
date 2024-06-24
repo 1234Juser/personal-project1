@@ -32,8 +32,6 @@ public class CommentService {
         //결과 반환
         return dtos;
     }
-
-
     @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
         //게시글 조회 및 예외 발생
@@ -59,7 +57,6 @@ public class CommentService {
         return CommentDto.createCommentDto(updated);
 
     }
-
     public CommentDto delete(Long id) {
         //댓글 조회 및 예외 발생
         Comment target = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패! "+

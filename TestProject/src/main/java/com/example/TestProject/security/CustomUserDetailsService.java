@@ -26,22 +26,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         log.info("loadUserByUsername: " + username);
-
-//        UserDetails userDetails = User.builder().username("user1").password(passwordEncoder.encode("1111"))
-//                .authorities("ROLE_USER")
-//                .build();
-//
-//        return userDetails;  //테스트 클래스
-
         Optional<Member> result = memberRepository.getWithRoles(username);
-
         if(result.isEmpty()) {
-
             throw new UsernameNotFoundException("username not found");
         }
-
         Member member = result.get();
-
         MemberSecurityDTO memberSecurityDTO = new MemberSecurityDTO(
                 member.getMid(),
                 member.getMpw(),
@@ -50,10 +39,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 false,
                 member.getRoleSet().stream().map(memberRole -> new SimpleGrantedAuthority("ROLE_" + memberRole.name())).collect(Collectors.toList())
         );
-
         log.info("memberSecurityDTO---------");
         log.info(memberSecurityDTO);
-
         return memberSecurityDTO;
     }
 }

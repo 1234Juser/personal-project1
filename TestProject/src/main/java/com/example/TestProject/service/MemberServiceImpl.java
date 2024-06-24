@@ -11,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-
-
 @Configuration
 @Log4j2
 @Service
@@ -38,9 +36,5 @@ public class MemberServiceImpl implements MemberService {
         if(exist){
             throw new MidExistException();
         }
-
-
-
-
     }
 }

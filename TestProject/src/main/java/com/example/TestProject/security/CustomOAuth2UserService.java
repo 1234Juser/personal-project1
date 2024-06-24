@@ -94,12 +94,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                                     .stream().map(memberRole -> new SimpleGrantedAuthority("ROLE_"+memberRole.name()))
                                     .collect(Collectors.toList())
                     );
-
             return memberSecurityDTO;
         }
     }
-
-
     private String getKakaoEmail(Map<String, Object> paramMap){
 
         log.info("KAKAO-----------------------------------------");
@@ -116,6 +113,5 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return email;
     }
-
 }
 
