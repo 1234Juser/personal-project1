@@ -12,4 +12,5 @@
 
 구현 부분 메인페이지
 
-![image](https://github.com/1234Juser/personal-project1/assets/93902468/64892ef0-c4c0-4e96-a1d7-2c514d9945a7)
+![image](https://github.com/1234Juser/personal-project1/assets/93902468/7a4d2c3e-e55b-4221-acaf-998137021c21)
+
